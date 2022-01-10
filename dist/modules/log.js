@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LOG_TYPE = void 0;
+exports.Logger = exports.LOG_TYPE = void 0;
 var LOG_TYPE;
 (function (LOG_TYPE) {
     LOG_TYPE["info"] = "INFO";
@@ -39,4 +39,4 @@ class Logger {
         this.log(LOG_TYPE.error, ...args);
     }
 }
-exports.default = Logger;
+exports.Logger = Logger;
