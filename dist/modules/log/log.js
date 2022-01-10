@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Logger = exports.LOG_TYPE = void 0;
+const color_1 = require("./color");
 var LOG_TYPE;
 (function (LOG_TYPE) {
     LOG_TYPE["info"] = "INFO";
@@ -8,25 +9,40 @@ var LOG_TYPE;
     LOG_TYPE["error"] = "ERROR";
 })(LOG_TYPE = exports.LOG_TYPE || (exports.LOG_TYPE = {}));
 class Logger {
-    constructor() {
+    constructor(config) {
         this.config = {
             time: true,
+            console: true,
+            pid: true
         };
+        if (config) {
+            this.config = config;
+        }
     }
+    // 构建log
     log(type, ...args) {
-        let time = new Date().toLocaleString();
+        let time = this.config.time ? new Date().toLocaleString() : '';
+        let color = '';
+        let pid = process.pid;
         switch (type) {
             case LOG_TYPE.info:
-                console.log(`[${time} %c ${type}]: `, ...args);
+                color = color_1.STYLE_COLOR.green;
                 break;
             case LOG_TYPE.warn:
-                console.log(`[${time} %c ${type}]: `, ...args);
+                color = color_1.STYLE_COLOR.yellow;
                 break;
             case LOG_TYPE.error:
-                console.log(`[${time} %c ${type}]: `, ...args);
+                color = color_1.STYLE_COLOR.red;
                 break;
             default:
                 break;
+        }
+        if (this.config.console) {
+            if (this.config.pid) {
+                console.log(`[${time} ${color} ] (pid: %s) : `, type, pid, ...args);
+                return;
+            }
+            console.log(`[${time} ${color} ] : `, type, ...args);
         }
     }
     info(...args) {

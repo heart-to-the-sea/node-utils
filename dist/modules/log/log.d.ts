@@ -9,10 +9,13 @@ export declare enum LOG_TYPE {
     error = "ERROR"
 }
 export interface LoggerConfig {
-    time: boolean;
+    time?: boolean;
+    console?: boolean;
+    pid?: boolean;
 }
 export declare class Logger implements LoggerOutPutI {
     config: LoggerConfig;
+    constructor(config?: LoggerConfig);
     private log;
     info(...args: any): void;
     warn(...args: any): void;
