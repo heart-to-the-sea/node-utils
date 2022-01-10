@@ -1,10 +1,10 @@
 {
   "name": "plum-blossom-node-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "node工具类",
   "main": "./dist/index.js",
   "scripts": {
-    "build": " tsc --declaration"
+    "build": "tsc --declaration"
   },
   "repository": {
     "type": "git",
