@@ -1,0 +1,25 @@
+{
+  "name": "plum-blossom-node-utils",
+  "version": "1.0.0",
+  "description": "node工具类",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wintryplum/node-utils.git"
+  },
+  "keywords": [
+    "utils",
+    "node",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "xing_qian_kun",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wintryplum/node-utils/issues"
+  },
+  "homepage": "https://github.com/wintryplum/node-utils#readme"
+}
