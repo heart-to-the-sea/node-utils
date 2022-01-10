@@ -1,1 +1,5 @@
-export * from './modules/log'
+import * as Logger from './modules/log'
+
+export default {
+  Logger
+}

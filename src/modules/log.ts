@@ -9,11 +9,12 @@ export enum LOG_TYPE{
   error = "ERROR"
 }
 
+export interface LoggerConfig{
+  time: boolean
+}
 
-export interface LoggerConfig{}
-
-export default class Logger implements LoggerOutPutI{
-  config = {
+export class Logger implements LoggerOutPutI{
+  config:LoggerConfig = {
     time: true,
   }
   private log(type: LOG_TYPE, ...args: any): void {
