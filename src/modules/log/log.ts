@@ -12,6 +12,7 @@ export interface LoggerOutPutI {
   error(...args: any): void
 }
 export enum LOG_TYPE{
+  start = "START",
   info  = "INFO",
   warn  = "WARN",
   error = "ERROR"
@@ -26,7 +27,7 @@ export class Logger implements LoggerOutPutI{
   }
   writeFile :WriteFile|undefined;
   constructor(config ?:LoggerConfig|undefined) {
-    this.info(typeof config === 'string')
+    this.start(typeof config === 'string')
     if (typeof config === 'object'){
       this.config = config
     } else if(!config && configHandler.isNodeUtilsConfigYml(base_path)) { // 如果不存在就对其取反
@@ -45,11 +46,9 @@ export class Logger implements LoggerOutPutI{
   // 初始化yml
   initConfigYml(){
     try{
-      this.info("初始化node.utils.config.yml")
+      this.start("初始化node.utils.config.yml")
       const configYml = new LogConfigYaml(base_path).get()
-      this.info(configYml)
       if(configYml?.log) {
-        this.info(configYml.log)
         this.config = Object.assign(this.config,configYml.log)
       }
     } catch (e) {
@@ -72,6 +71,8 @@ export class Logger implements LoggerOutPutI{
       case LOG_TYPE.error:
         color = STYLE_COLOR.red
         break;
+      case LOG_TYPE.start:
+        color = STYLE_COLOR.magenta
       default:
         break;
     }
@@ -91,7 +92,9 @@ export class Logger implements LoggerOutPutI{
     }
     
   }
-  
+  private start(...args: any): void {
+    this.log(LOG_TYPE.start,...args)
+  }
   info(...args: any): void {
     this.log(LOG_TYPE.info,...args)
   }

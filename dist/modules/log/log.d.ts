@@ -5,6 +5,7 @@ export interface LoggerOutPutI {
     error(...args: any): void;
 }
 export declare enum LOG_TYPE {
+    start = "START",
     info = "INFO",
     warn = "WARN",
     error = "ERROR"
@@ -16,6 +17,7 @@ export declare class Logger implements LoggerOutPutI {
     initConfig(): void;
     initConfigYml(): void;
     private log;
+    private start;
     info(...args: any): void;
     warn(...args: any): void;
     error(...args: any): void;

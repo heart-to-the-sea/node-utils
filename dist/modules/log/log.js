@@ -12,6 +12,7 @@ const fs_1 = require("fs");
 const moment_1 = __importDefault(require("moment"));
 var LOG_TYPE;
 (function (LOG_TYPE) {
+    LOG_TYPE["start"] = "START";
     LOG_TYPE["info"] = "INFO";
     LOG_TYPE["warn"] = "WARN";
     LOG_TYPE["error"] = "ERROR";
@@ -25,7 +26,7 @@ class Logger {
             console: true,
             pid: true
         };
-        this.info(typeof config === 'string');
+        this.start(typeof config === 'string');
         if (typeof config === 'object') {
             this.config = config;
         }
@@ -45,11 +46,9 @@ class Logger {
     // 初始化yml
     initConfigYml() {
         try {
-            this.info("初始化node.utils.config.yml");
+            this.start("初始化node.utils.config.yml");
             const configYml = new configYaml_1.LogConfigYaml(base_path).get();
-            this.info(configYml);
             if (configYml === null || configYml === void 0 ? void 0 : configYml.log) {
-                this.info(configYml.log);
                 this.config = Object.assign(this.config, configYml.log);
             }
         }
@@ -73,6 +72,8 @@ class Logger {
             case LOG_TYPE.error:
                 color = color_1.STYLE_COLOR.red;
                 break;
+            case LOG_TYPE.start:
+                color = color_1.STYLE_COLOR.magenta;
             default:
                 break;
         }
@@ -90,6 +91,9 @@ class Logger {
                 }
             }
         }
+    }
+    start(...args) {
+        this.log(LOG_TYPE.start, ...args);
     }
     info(...args) {
         this.log(LOG_TYPE.info, ...args);
