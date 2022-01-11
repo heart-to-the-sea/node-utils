@@ -4,16 +4,21 @@ node工具类
 
  1. logger日志处理 :部分完成，使用请看demo
  2. 通过配置 node.utils.config.yml 实现整个工具类的统一配置（目前支持log模块的简单配置）
-
+ 3. 日志文件可输出到本地文件中持久化存储
 ### node.utils.config.yml
 
   这个文件在运行node命令的文件目录下配置
 #### log模块 node.utils.config.yml
 ```yml
 log:
-  pid: false      # 打印PID
-  console: false  # 控制台输出
-  time: false     # 打印时间日期
+  pid: true                       # 打印PID
+  console: true                   # 控制台输出
+  time: true                      # 打印时间日期
+  out:
+    path: ./logs                  # 输出日志文件夹
+    name: 'YYYY-MM-DD HH:mm:ss'   # 名称格式
+    ext: 'log'                    # 后缀
+    size: 100M                    # 文件按照大小分割 暂未实现
 ```
 
 ## 样式
