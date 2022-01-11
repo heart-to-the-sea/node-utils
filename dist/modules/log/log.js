@@ -31,7 +31,7 @@ class Logger {
                 this.info(configYml);
                 if (configYml === null || configYml === void 0 ? void 0 : configYml.log) {
                     this.info(configYml.log);
-                    this.config = configYml.log;
+                    this.config = Object.assign(this.config, configYml.log);
                 }
             }
             catch (e) {
