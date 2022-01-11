@@ -13,6 +13,9 @@ const testDemo:Array<any> = [
 testDemo.forEach((item)=>{
   logger.info(item)
 })
+logger.info("测试")
+logger.warn("测试")
+logger.error("测试")
 // testDemo.forEach((item)=>{
 //   logger.warn(item)
 // })

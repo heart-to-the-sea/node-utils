@@ -1,4 +1,4 @@
 log:
-  time: false
-  console: true
-  pid : false
+  pid: true      # 打印PID
+  console: true  # 控制台输出
+  time: true     # 打印时间日期
