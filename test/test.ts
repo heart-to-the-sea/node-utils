@@ -10,12 +10,15 @@ const testDemo:Array<any> = [
   {name:"test"},
   Symbol("test")
 ]
-testDemo.forEach((item)=>{
-  logger.info(item)
-})
-logger.info("测试")
-logger.warn("测试")
-logger.error("测试")
+
+setInterval(()=>{
+  testDemo.forEach((item)=>{
+    logger.info(item)
+  })
+  logger.info("测试")
+  logger.warn("测试")
+  logger.error("测试")
+},500)
 // testDemo.forEach((item)=>{
 //   logger.warn(item)
 // })
