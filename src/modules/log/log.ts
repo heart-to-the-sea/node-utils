@@ -27,8 +27,7 @@ export class Logger implements LoggerOutPutI{
     this.info(typeof config === 'string')
     if (typeof config === 'object'){
       this.config = config
-    } else if(!config) { // 如果不存在就对其取反
-      this.info(configHandler.isNodeUtilsConfigYml(base_path))
+    } else if(!config && configHandler.isNodeUtilsConfigYml(base_path)) { // 如果不存在就对其取反
       try{
         this.info("初始化node.utils.config.yml")
         const configYml = new LogConfigYaml(base_path).get()
