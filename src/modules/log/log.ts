@@ -34,7 +34,7 @@ export class Logger implements LoggerOutPutI{
         this.info(configYml)
         if(configYml?.log) {
           this.info(configYml.log)
-          this.config = configYml.log
+          this.config = Object.assign(this.config,configYml.log)
         }
       } catch (e) {
         this.error(e)
