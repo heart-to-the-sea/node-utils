@@ -1,0 +1,4 @@
+log:
+  time: true
+  console: true
+  pid : true

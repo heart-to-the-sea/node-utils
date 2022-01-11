@@ -1,4 +1,9 @@
+import { dirname, resolve } from "path";
+import { cwd } from "process";
 import { STYLE_COLOR } from "./color";
+import { LoggerConfig } from "../../config/config";
+import { LogConfigYaml } from "../../config/configYaml";
+import { configHandler } from "../../config/configHandler";
 
 export interface LoggerOutPutI {
   info (...args: any): void
@@ -10,22 +15,32 @@ export enum LOG_TYPE{
   warn  = "WARN",
   error = "ERROR"
 }
-
-export interface LoggerConfig{
-  time?: boolean,
-  console?: boolean,
-  pid?: boolean
-}
-
+// 获取命令所在的路径
+const base_path = resolve("./",'node.utils.config.yml');
 export class Logger implements LoggerOutPutI{
   config: LoggerConfig = {
     time: true,
     console: true,
     pid : true
   }
-  constructor(config ?:LoggerConfig) {
-    if (config){
+  constructor(config ?:LoggerConfig|undefined) {
+    this.info(typeof config === 'string')
+    if (typeof config === 'object'){
       this.config = config
+    } else if(!config) { // 如果不存在就对其取反
+      this.info(configHandler.isNodeUtilsConfigYml(base_path))
+      try{
+        this.info("初始化node.utils.config.yml")
+        const configYml = new LogConfigYaml(base_path).get()
+        this.info(configYml)
+        if(configYml?.log) {
+          this.info(configYml.log)
+          this.config = configYml.log
+        }
+      } catch (e) {
+        this.error(e)
+        this.warn("初始化失败，赋值为默认")
+      }
     }
   }
   // 构建log
