@@ -1,4 +1,8 @@
 log:
-  pid: true      # 打印PID
-  console: true  # 控制台输出
-  time: true     # 打印时间日期
+  pid: true               # 打印PID
+  console: true           # 控制台输出
+  time: true              # 打印时间日期
+  out:
+    path: ''              # 输出日志文件夹
+    name: 'yyyy-mmm-dd',  # 名称格式
+    ext: 'log'            # 后缀
