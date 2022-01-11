@@ -1,6 +1,6 @@
 {
   "name": "plum-blossom-node-utils",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "node工具类",
   "main": "./dist/index.js",
   "scripts": {
