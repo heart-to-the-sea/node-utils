@@ -23,6 +23,8 @@ log:
 
 ## 样式
 ```typescript
+import {Logger} from '../src/index'
+const logger = new Logger.Logger()
 const testDemo:Array<any> = [
   "string",
   12313123,
@@ -33,9 +35,15 @@ const testDemo:Array<any> = [
   {name:"test"},
   Symbol("test")
 ]
-testDemo.forEach((item)=>{
-  logger.info(item)
-})
+
+setInterval(()=>{
+  testDemo.forEach((item)=>{
+    logger.info(item)
+  })
+  logger.info("测试")
+  logger.warn("测试")
+  logger.error("测试")
+},500)
 ```
 ```
 [2022/1/11 下午3:28:37 INFO ] (pid: 12068) :  false
